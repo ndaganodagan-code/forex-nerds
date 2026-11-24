@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forex Nerds by Notoriety — Trade · Analyse · Profit</title>
+  <meta name="description" content="Forex research and education from Notoriety. Weekly setups, CRT + SMC analysis, live charts and copy trading — built for traders in Uganda and beyond." />
+  <meta property="og:title" content="Forex Nerds by Notoriety" />
+  <meta property="og:description" content="Weekly setups, CRT + SMC analysis, live charts and copy trading." />
+  <meta property="og:image" content="assets/logo.jpg" />
+  <meta name="theme-color" content="#050607" />
+  <link rel="icon" href="assets/logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ================= SIGNALS ANNOUNCEMENT ================= -->
+  <div class="announce" id="announce" hidden>
+    <div class="wrap announce__inner">
+      <span class="announce__live"><span class="announce__ping"></span>LIVE</span>
+      <p class="announce__text"><strong id="announceHead">New Nerd Pro signals are live</strong><span class="announce__detail" id="announceDetail"></span></p>
+      <button class="announce__btn" data-access>Get access · <span data-amount>UGX 10,000</span></button>
+      <button class="announce__close" id="announceClose" aria-label="Dismiss">×</button>
+    </div>
+  </div>
+
+  <!-- ================= NAV ================= -->
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a href="#top" class="brand" aria-label="Forex Nerds by Notoriety home">
+        <img src="assets/logo.jpg" alt="Notoriety logo" />
+        <span class="brand__text">Forex Nerds<small>by Notoriety</small></span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="Main">
+        <a href="#markets">Markets</a>
+        <a href="#setups">Setups</a>
+        <a href="#academy">Academy</a>
+        <a href="#membership">Membership</a>
+        <a href="#faq">FAQ</a>
+        <a href="#" data-link="openAccount" target="_blank" rel="noopener" class="btn btn--sm btn--primary nav__cta-mobile">Open account</a>
+      </nav>
+      <div class="nav__right">
+        <button class="bell" id="bell" data-access aria-label="Nerd Pro signals" hidden><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="bell__dot"></span></button>
+        <a href="#" data-link="copyTrading" target="_blank" rel="noopener" class="btn btn--sm btn--ghost hide-sm">Copy my trades</a>
+        <a href="#" data-link="openAccount" target="_blank" rel="noopener" class="btn btn--sm btn--primary hide-sm">Open account</a>
+        <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="hero__glow"></div>
+      <div class="wrap hero__grid">
+        <div class="hero__copy reveal">
+          <p class="eyebrow"><span class="dot"></span> Forex research &amp; education · Uganda</p>
+          <h1>Trade with clarity,<br /><span class="silver">not noise.</span></h1>
+          <p class="lead">Weekly setups, honest analysis and a simple path to the markets. Learn the CRT + SMC method — or copy my trades while you learn.</p>
+          <div class="hero__actions">
+            <a href="#" data-link="copyTrading" target="_blank" rel="noopener" class="btn btn--primary btn--lg">
+              Copy my trades <span aria-hidden="true">→</span>
+            </a>
+            <a href="#" data-link="openAccount" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">Open a trading account</a>
+          </div>
+          <ul class="hero__trust">
+            <li><strong>1</strong> free setup every week</li>
+            <li><strong>9</strong> markets tracked live</li>
+            <li><strong>CRT + SMC</strong> methodology</li>
+          </ul>
+        </div>
+
+        <div class="hero__visual reveal">
+          <div class="hero__img">
+            <img src="assets/phone-charts.jpg" alt="Trader checking live market prices on a phone" />
+          </div>
+          <div class="float-card float-card--top">
+            <span class="float-card__label" id="sessionLabel">Market session</span>
+            <span class="float-card__price" id="sessionName">—</span>
+            <span class="float-card__sub muted small" id="sessionTime"></span>
+          </div>
+          <div class="float-card float-card--bottom">
+            <span class="pill pill--green">Free setup</span>
+            <span class="float-card__title" id="heroSetup">This week's free setup is live</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TICKER ================= -->
+    <div class="ticker" aria-label="Live market prices" id="ticker"></div>
+
+    <!-- ================= TWO WAYS TO START ================= -->
+    <section class="section" id="start">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <p class="eyebrow">Get started</p>
+          <h2>Two simple ways to start</h2>
+          <p class="muted">Pick the one that fits you. Both take a few minutes.</p>
+        </div>
+
+        <div class="paths">
+          <article class="path reveal">
+            <div class="path__img"><img src="assets/market-board.jpg" alt="Market data board" loading="lazy" /></div>
+            <div class="path__body">
+              <span class="pill pill--green">Hands-off</span>
+              <h3>Copy my trades</h3>
+              <p class="muted">Follow my strategy on HFM. When I open a trade, your account mirrors it automatically — in proportion to your balance.</p>
+              <ol class="steps">
+                <li>Open the Notoriety strategy page</li>
+                <li>Sign in or register with HFM</li>
+                <li>Choose your amount and start copying</li>
+              </ol>
+              <a href="#" data-link="copyTrading" target="_blank" rel="noopener" class="btn btn--primary">Start copy trading →</a>
+            </div>
+          </article>
+
+          <article class="path reveal">
+            <div class="path__img"><img src="assets/laptop-trader.jpg" alt="Trader analysing charts on a laptop" loading="lazy" /></div>
+            <div class="path__body">
+              <span class="pill">Hands-on</span>
+              <h3>Trade it yourself</h3>
+              <p class="muted">Open your own HFM account and take the weekly setups using the method taught in the Academy.</p>
+              <ol class="steps">
+                <li>Open your HFM account</li>
+                <li>Verify your ID and fund your account</li>
+                <li>Follow the weekly setups here</li>
+              </ol>
+              <a href="#" data-link="openAccount" target="_blank" rel="noopener" class="btn btn--ghost">Open trading account →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LIVE MARKETS ================= -->
+    <section class="section section--alt" id="markets">
+      <div class="wrap">
+        <div class="section__head section__head--row reveal">
+          <div>
+            <p class="eyebrow">Live markets</p>
+            <h2>The charts I'm watching</h2>
+          </div>
+          <div class="status is-live" id="status"><span class="status__dot"></span><span id="statusText">Live</span></div>
+        </div>
+
+        <div class="chart-card reveal">
+          <div class="chart-card__bar">
+            <div class="chips" id="symbolChips" role="tablist" aria-label="Instrument"></div>
+            <div class="chips chips--tf" id="tfChips" role="tablist" aria-label="Timeframe"></div>
+          </div>
+          <div class="chart-card__info">
+            <div>
+              <span class="chart-card__sym" id="chartSym">EUR/USD</span>
+              <span class="muted small" id="chartTf">1 hour</span>
+            </div>
+            <span class="muted small">Times shown in East Africa Time</span>
+          </div>
+          <div class="chart" id="chart"><div class="chart__msg" id="chartMsg">Loading live chart…</div></div>
+        </div>
+        <!-- My analysis for the selected instrument -->
+        <div class="ana reveal" id="ana">
+          <div class="ana__head">
+            <div>
+              <p class="eyebrow">My analysis</p>
+              <h3 id="anaTitle">EUR/USD</h3>
+            </div>
+            <div class="ana__actions">
+              <span class="muted small" id="anaUpdated"></span>
+              <button class="btn btn--sm btn--gold btn-auto" id="autoBtn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+                <span>Auto analyse my charts</span>
+              </button>
+            </div>
+          </div>
+          <table class="ana__table">
+            <thead>
+              <tr><th>Timeframe</th><th>Analysis</th><th>Buying vs selling</th><th>My opinion</th></tr>
+            </thead>
+            <tbody id="anaBody"></tbody>
+          </table>
+        </div>
+
+        <!-- ⚡ Auto analysis: upload screenshots -->
+        <div class="auto" id="auto" hidden aria-live="polite">
+          <div class="auto__head">
+            <div>
+              <p class="eyebrow eyebrow--gold">⚡ Auto analysis</p>
+              <h3 id="autoTitle">Upload your charts</h3>
+              <p class="muted small" id="autoSub">One screenshot per timeframe, same pair. We'll read them with the CRT + SMC method.</p>
+            </div>
+            <button class="auto__close" id="autoClose" aria-label="Close">×</button>
+          </div>
+
+          <!-- Step 1: upload -->
+          <div class="auto__pane" id="paneUpload">
+            <div class="uploads">
+              <div class="up__tile" data-slot="0" tabindex="0" role="button" aria-label="Add H4 screenshot">
+                <span class="up__tf">H4</span>
+                <span class="up__empty"><span class="up__icon">＋</span><span>Add screenshot</span></span>
+                <img alt="" hidden />
+                <button class="up__x" type="button" aria-label="Remove" hidden>×</button>
+              </div>
+              <div class="up__tile" data-slot="1" tabindex="0" role="button" aria-label="Add H1 screenshot">
+                <span class="up__tf">H1</span>
+                <span class="up__empty"><span class="up__icon">＋</span><span>Add screenshot</span></span>
+                <img alt="" hidden />
+                <button class="up__x" type="button" aria-label="Remove" hidden>×</button>
+              </div>
+              <div class="up__tile" data-slot="2" tabindex="0" role="button" aria-label="Add M15 or M5 screenshot">
+                <span class="up__tf up__tf--switch">
+                  <button type="button" class="tfsw is-on" data-low="M15">M15</button><button type="button" class="tfsw" data-low="M5">M5</button>
+                </span>
+                <span class="up__empty"><span class="up__icon">＋</span><span>Add screenshot</span></span>
+                <img alt="" hidden />
+                <button class="up__x" type="button" aria-label="Remove" hidden>×</button>
+              </div>
+            </div>
+            <input type="file" id="upInput" accept="image/png,image/jpeg,image/webp" hidden />
+            <button class="btn btn--gold btn--block btn--lg" id="analyseBtn" disabled><span id="analyseLabel">Add 3 screenshots to start</span></button>
+            <p class="muted small center">Tip: crop to the candles and price scale. Clear, uncluttered charts read best.</p>
+          </div>
+
+          <!-- Step 2: working -->
+          <div class="auto__pane auto__loading" id="paneLoading" hidden>
+            <div class="scan" aria-hidden="true"><span class="scan__line"></span>
+              <svg viewBox="0 0 120 50" preserveAspectRatio="none"><polyline points="0,38 12,30 22,34 34,18 46,24 58,10 70,20 82,14 94,28 106,22 120,8" /></svg>
+            </div>
+            <ol class="auto__steps" id="autoSteps">
+              <li>Reading the H4 narrative &amp; range</li>
+              <li>Checking H1 for liquidity sweeps</li>
+              <li>Looking for CHOCH &amp; fair value gaps</li>
+              <li>Weighing bullish vs bearish evidence</li>
+            </ol>
+          </div>
+
+          <!-- Error -->
+          <div class="auto__pane auto__error" id="paneError" hidden>
+            <p id="errText"></p>
+            <button class="btn btn--sm btn--ghost" id="errBack">← Back to my screenshots</button>
+          </div>
+
+          <!-- Step 3: result -->
+          <div class="auto__pane res" id="paneResult" hidden>
+            <div class="odds">
+              <div class="odds__side odds__side--bull"><span class="odds__num" id="oBull">50%</span><span class="odds__lbl">Bullish chance</span></div>
+              <div class="odds__side odds__side--bear"><span class="odds__num" id="oBear">50%</span><span class="odds__lbl">Bearish chance</span></div>
+              <div class="odds__bar"><span class="meter__buy" id="oBullBar"></span><span class="meter__sell" id="oBearBar"></span></div>
+            </div>
+            <p class="res__headline" id="resHeadline"></p>
+
+            <div class="res__block">
+              <div class="seg" id="tfTabs" role="tablist"></div>
+              <div class="tfcard" id="tfCard"></div>
+            </div>
+
+            <div class="res__block">
+              <h4>What the system spotted</h4>
+              <div class="chipset" id="conceptChips"></div>
+            </div>
+
+            <div class="res__block" id="levelsBlock">
+              <h4>Key levels to watch</h4>
+              <ul class="levels" id="levelList"></ul>
+            </div>
+
+            <div class="res__cases">
+              <div class="case case--bull"><h4>Would strengthen the bullish side</h4><ul id="bullCase"></ul></div>
+              <div class="case case--bear"><h4>Would strengthen the bearish side</h4><ul id="bearCase"></ul></div>
+            </div>
+
+            <div class="res__foot">
+              <button class="btn btn--ghost btn--sm" id="newAnalysis">↻ Analyse new charts</button>
+              <p class="muted small">Chances are estimates from the visible chart, not predictions. This is educational analysis, not a signal or financial advice.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="muted small center">Live charts by TradingView. For research and education only — the last candle is still forming and isn't a confirmed signal.</p>
+      </div>
+    </section>
+
+    <!-- ================= SETUPS ================= -->
+    <section class="section" id="setups">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <p class="eyebrow" id="weekLabel">This week</p>
+          <h2>Weekly trade setups</h2>
+          <p class="muted">One free setup for everyone. Two premium setups for Nerd Pro members.</p>
+        </div>
+
+        <div class="setups" id="setupList"></div>
+
+        <div class="outlook reveal" id="outlook">
+          <div class="outlook__text">
+            <span class="pill pill--green">Big picture</span>
+            <h3 id="outlookTitle"></h3>
+            <p class="muted" id="outlookSummary"></p>
+          </div>
+          <ul class="outlook__list" id="outlookPoints"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= METHOD ================= -->
+    <section class="section section--alt" id="method">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <p class="eyebrow">The method</p>
+          <h2>Three lenses. One clear plan.</h2>
+        </div>
+        <div class="method">
+          <div class="method__item reveal">
+            <span class="method__num">01</span>
+            <h3>CRT</h3>
+            <p class="muted">Candle Range Theory. Reading how price sweeps a previous candle's high or low — and what it does next.</p>
+          </div>
+          <div class="method__item reveal">
+            <span class="method__num">02</span>
+            <h3>SMC</h3>
+            <p class="muted">Smart Money Concepts. Market structure, liquidity and the zones where big players leave footprints.</p>
+          </div>
+          <div class="method__item reveal">
+            <span class="method__num">03</span>
+            <h3>Technical analysis</h3>
+            <p class="muted">Key levels, trend and timing — the confirmation layer before any setup is published.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ANALYSIS ================= -->
+    <section class="section" id="analysis">
+      <div class="wrap">
+        <div class="section__head section__head--row reveal">
+          <div>
+            <p class="eyebrow">Market intelligence</p>
+            <h2>Latest analysis</h2>
+          </div>
+        </div>
+        <div class="cards" id="analysisList"></div>
+      </div>
+    </section>
+
+    <!-- ================= ACADEMY ================= -->
+    <section class="section section--alt" id="academy">
+      <div class="wrap academy">
+        <div class="academy__img reveal">
+          <img src="assets/laptop-trader.jpg" alt="Learning to trade on a laptop" loading="lazy" />
+        </div>
+        <div class="academy__copy reveal">
+          <p class="eyebrow">Forex Academy</p>
+          <h2>Learn at your own pace</h2>
+          <p class="muted">Short, practical lessons. No fluff, no get-rich-quick promises.</p>
+          <ul class="courses">
+            <li><span class="course__lvl">Beginner</span><div><strong>Forex foundations</strong><span class="muted small">Pips, lots, leverage and your first trade plan</span></div></li>
+            <li><span class="course__lvl">Intermediate</span><div><strong>Market structure &amp; SMC</strong><span class="muted small">Liquidity, order blocks and breaks of structure</span></div></li>
+            <li><span class="course__lvl course__lvl--pro">Nerd Pro</span><div><strong>The CRT model</strong><span class="muted small">Full walkthrough of how setups are built</span></div></li>
+          </ul>
+          <a href="#membership" class="btn btn--ghost">See membership →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MEMBERSHIP ================= -->
+    <section class="section" id="membership">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <p class="eyebrow">Membership</p>
+          <h2>Start free. Upgrade when you're ready.</h2>
+        </div>
+        <div class="plans">
+          <div class="plan reveal">
+            <h3>Free</h3>
+            <p class="plan__price">UGX 0</p>
+            <ul class="plan__list">
+              <li>1 trade setup every week</li>
+              <li>Weekly market outlook</li>
+              <li>Live charts &amp; market prices</li>
+              <li>Beginner Academy lessons</li>
+            </ul>
+            <a href="#setups" class="btn btn--ghost btn--block">View this week's setup</a>
+          </div>
+          <div class="plan plan--pro reveal">
+            <span class="plan__badge">Most value</span>
+            <h3>Nerd Pro</h3>
+            <p class="plan__price" id="proPrice">Launching soon</p>
+            <ul class="plan__list">
+              <li>Everything in Free</li>
+              <li>2 premium setups every week</li>
+              <li>Setup updates when levels change</li>
+              <li>Full CRT + SMC Academy</li>
+              <li>Publication alerts</li>
+            </ul>
+            <a href="#" id="proCta" class="btn btn--primary btn--block">Join the waitlist</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section section--alt" id="faq">
+      <div class="wrap wrap--narrow">
+        <div class="section__head reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Good questions</h2>
+        </div>
+        <div class="faq">
+          <details class="reveal"><summary>What is copy trading?</summary><p>Copy trading lets your HFM account automatically mirror the trades I place on my strategy. You stay in control — you choose how much to allocate and can stop copying at any time. Past results never guarantee future results.</p></details>
+          <details class="reveal"><summary>Do I need experience to start?</summary><p>No. Start with the free weekly setup and the beginner lessons. If you'd rather not trade manually yet, copy trading lets you take part while you learn.</p></details>
+          <details class="reveal"><summary>Which broker do you use?</summary><p>I trade with HFM. You can open an account through the "Open account" button on this page. Funding options, including mobile money, depend on what HFM offers in your country.</p></details>
+          <details class="reveal"><summary>Are the setups financial advice?</summary><p>No. Everything on Forex Nerds is research and education. Always do your own analysis, use a stop loss and only risk money you can afford to lose.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FINAL CTA ================= -->
+    <section class="cta-band">
+      <div class="cta-band__bg"><img src="assets/market-board.jpg" alt="" loading="lazy" /></div>
+      <div class="wrap cta-band__inner reveal">
+        <h2>Ready when you are.</h2>
+        <p class="lead">Copy the strategy, or open your own account and trade the weekly setups.</p>
+        <div class="hero__actions hero__actions--center">
+          <a href="#" data-link="copyTrading" target="_blank" rel="noopener" class="btn btn--primary btn--lg">Copy my trades →</a>
+          <a href="#" data-link="openAccount" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">Open trading account</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__top">
+        <a href="#top" class="brand"><img src="assets/logo.jpg" alt="Notoriety logo" /><span class="brand__text">Forex Nerds<small>by Notoriety</small></span></a>
+        <nav class="footer__links" aria-label="Footer">
+          <a href="#markets">Markets</a><a href="#setups">Setups</a><a href="#academy">Academy</a><a href="#membership">Membership</a><a href="#faq">FAQ</a>
+        </nav>
+        <div class="socials" id="socials"></div>
+      </div>
+      <div class="footer__risk">
+        <p><strong>Risk warning:</strong> Trading forex and CFDs involves a high level of risk and may not be suitable for everyone. Leverage can work against you, and you can lose more than you deposit. Copy trading does not guarantee profits, and past performance is not a reliable indicator of future results. Content on this website is for education and research only and is not financial advice.</p>
+        <p><strong>Partner disclosure:</strong> Links to HFM on this site are partner links. Notoriety may receive compensation when you open an account, at no extra cost to you.</p>
+      </div>
+      <p class="footer__copy">© <span id="year"></span> Forex Nerds by Notoriety · Trade · Analyse · Profit</p>
+    </div>
+  </footer>
+
+  <!-- Mobile sticky action bar -->
+  <div class="mobile-bar">
+    <a href="#" data-link="copyTrading" target="_blank" rel="noopener" class="btn btn--primary">Copy trades</a>
+    <a href="#" data-link="openAccount" target="_blank" rel="noopener" class="btn btn--ghost">Open account</a>
+  </div>
+
+  <!-- ================= NERD PRO ACCESS MODAL ================= -->
+  <div class="modal" id="payModal" role="dialog" aria-modal="true" aria-labelledby="payTitle" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel">
+      <button class="modal__x" data-close aria-label="Close">×</button>
+
+      <!-- Step 1: request -->
+      <section class="pstep" data-step="1">
+        <span class="pill pill--gold">Nerd Pro signals</span>
+        <h3 id="payTitle">Get this week's signals</h3>
+        <div class="paysum">
+          <div><span class="muted small">Access</span><strong class="paysum__amt" data-amount>UGX 10,000</strong></div>
+          <ul class="paysum__list">
+            <li id="paySignalDetail">2 premium setups</li>
+            <li>Entry, stop loss &amp; targets</li>
+            <li>Delivered on Telegram</li>
+          </ul>
+        </div>
+        <label class="field field--plain">
+          <input id="payName" type="text" autocomplete="name" placeholder="Your name (optional)" maxlength="60" />
+        </label>
+        <button class="btn btn--tg btn--block btn--lg" id="requestBtn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+          <span>Request on Telegram</span>
+        </button>
+      </section>
+
+      <!-- Step 2: reminder -->
+      <section class="pstep" data-step="2" hidden>
+        <div class="clip-anim" aria-hidden="true">📎</div>
+        <h3 class="center">Don't forget your proof of payment</h3>
+        <p class="muted center">Attach a screenshot of your <strong data-amount>UGX 10,000</strong> payment to the Telegram message so your signals can be sent.</p>
+        <div class="payto payto--pay">
+          <div class="payto__row"><span class="muted small">Send payment to</span><strong class="mono" id="payNumber">0794378419</strong><button class="copy" data-copy="#payNumber">Copy</button></div>
+        </div>
+        <div class="tgmsg"><pre id="tgMessage"></pre><button class="copy" data-copy="#tgMessage">Copy</button></div>
+        <a class="btn btn--tg btn--block btn--lg" id="tgBtn" href="#" target="_blank" rel="noopener"><span>Got it — open Telegram</span></a>
+        <button class="back center-self" data-back="1">← Back</button>
+      </section>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="content.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
